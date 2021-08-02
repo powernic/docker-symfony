@@ -30,3 +30,12 @@ RUN apk add --no-cache \
     libc-dev \
     make \
 	&& pecl install xdebug && docker-php-ext-enable xdebug 
+	
+RUN apk add --no-cache \
+	postgresql-dev \
+	&& docker-php-ext-install pdo_pgsql \
+	&& docker-php-ext-enable pdo_pgsql
+	
+RUN pecl install apcu \
+	&& echo "apc.enable_cli=1" >> /usr/local/etc/php/php.ini \
+	&& echo "apc.enable=1" >> /usr/local/etc/php/php.ini
