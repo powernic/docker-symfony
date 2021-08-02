@@ -37,5 +37,6 @@ RUN apk add --no-cache \
 	&& docker-php-ext-enable pdo_pgsql
 	
 RUN pecl install apcu \
+	&& docker-php-ext-enable apcu \
 	&& echo "apc.enable_cli=1" >> /usr/local/etc/php/php.ini \
 	&& echo "apc.enable=1" >> /usr/local/etc/php/php.ini
