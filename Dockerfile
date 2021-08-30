@@ -40,3 +40,18 @@ RUN pecl install apcu \
 	&& docker-php-ext-enable apcu \
 	&& echo "apc.enable_cli=1" >> /usr/local/etc/php/php.ini \
 	&& echo "apc.enable=1" >> /usr/local/etc/php/php.ini
+
+RUN apk add --no-cache \
+		freetype-dev \
+        libjpeg-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+		libxml2-dev \
+		libwebp-dev \
+		procps &&\
+		docker-php-ext-configure gd \
+		  --with-freetype \
+		  --with-webp \
+		  --with-jpeg \
+		&& docker-php-ext-install gd \
+	&& docker-php-ext-enable pdo_pgsql
